@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            overflow: hidden;
+            color: white;
+        }
+
+        .container {
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #gameCanvas {
+            display: block;
+            margin: auto;
+            border: 5px solid white;
+            border-radius: 10px;
+        }
+
+        .health-bar-container {
+            position: absolute;
+            top: 20px;
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            z-index: 1;
+        }
+
+        .health-bar {
+            position: relative;
+            width: 45%;
+            height: 30px;
+            background: linear-gradient(90deg, #ff0000 0%, #ff4500 100%);
+            border: 4px solid white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .health {
+            position: absolute;
+            height: 100%;
+            background: linear-gradient(90deg, #81c7f8 0%, #818cf8 100%);
+            transition: width 0.3s ease;
+        }
+
+        #playerHealth {
+            width: 100%;
+        }
+
+        #enemyHealth {
+            width: 100%;
+        }
+
+        #timer {
+            background-color: black;
+            width: 100px;
+            height: 50px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            border: 4px solid white;
+            border-radius: 10px;
+            margin: 0 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #displayText {
+            position: absolute;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            font-size: 50px;
+            text-shadow: 2px 2px 8px black;
+            display: none;
+        }
+
+        .control-buttons {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+            .control-buttons button {
+                padding: 10px 20px;
+                background-color: #2a5298;
+                border: none;
+                color: white;
+                cursor: pointer;
+                font-size: 16px;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+                .control-buttons button:hover {
+                    background-color: #1e3c72;
+                    transform: translateY(-2px);
+                }
+
+                .control-buttons button:active {
+                    transform: translateY(1px);
+                }
+    </style>
+</head>
+<body>
+    <audio id="backgroundMusic" loop>
+        <source src="backgroundsound.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="container">
+        <div class="health-bar-container">
+            <div class="health-bar">
+                <div id="playerHealth" class="health"></div>
+            </div>
+            <div id="timer">10</div>
+            <div class="health-bar">
+                <div id="enemyHealth" class="health"></div>
+            </div>
+        </div>
+
+        <div id="displayText">Tie</div>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+        <div class="control-buttons">
+            <button onclick="playMusic()">Play Music</button>
+            <button onclick="stopMusic()">Stop Music</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+            integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/classes.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
